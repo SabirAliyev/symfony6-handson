@@ -10,12 +10,14 @@ class HelloController {
         " Hello!", " Hi!", " Bye!"
     ];
     
-    #[Route(path:"", name:"app_index")]
-    public function index() {
-        return new Response(implode(",", $this->messages));
+    #[Route(path:"/{limit<\d+>?3}", name:"app_index")] // 3 - default value for limit number of messages
+    public function index(int $limit) {
+        // We can set a $limit parameter to handle any values exceded the limit
+        return new Response(
+            implode(",", array_slice($this->messages, 0, $limit)));
     }
 
-    #[Route("/messages/{id}", name:"app_show_one")]
+    #[Route("/messages/{id<\d+>}", name:"app_show_one")]
     public function showOne(int $id) {
         return new Response(($this->messages[$id]));
     }
