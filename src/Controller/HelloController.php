@@ -8,7 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HelloController extends AbstractController {
     private array $messages = [
-        " Hello!", " Hi!", " Bye!"
+        ['message' => 'Hello!', 'created' => '2024/06/12'],
+        ['message' => 'Hi!','created' => '2024/04/12'],
+        ['message' => 'Bye!','created' => '2023/05/12'],
     ];
     
     #[Route(path:"/{limit<\d+>?3}", name:"app_index")]
